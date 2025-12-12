@@ -1,6 +1,6 @@
 {
   "name": "msuite-lib",
-  "version": "1.00.1",
+  "version": "1.00.2",
   "description": "Universal accounting API contracts and interfaces for applications",
   "homepage": "https://github.com/2mplus/msuite-lib#readme",
   "main": "dist/index.js",

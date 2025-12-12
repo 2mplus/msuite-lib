@@ -174,7 +174,7 @@ export type {
 
 // ==================== EXPORT CONSTANTS ====================
 // Export common constants
-export const LIBRARY_VERSION = '1.00.1';
+export const LIBRARY_VERSION = '1.00.2';
 export const API_VERSION = 'v1';
 export const DEFAULT_CURRENCY = 'INR';
 export const BASE_API_PATH = '/api/v1';
