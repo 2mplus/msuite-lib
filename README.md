@@ -1,0 +1,2 @@
+# msuite-lib
+api library
