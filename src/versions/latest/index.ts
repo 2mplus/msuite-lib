@@ -1,7 +1,7 @@
 // src/index.ts
 
-import { TransactionStatusEnum } from './enums/transaction-types.enum';
-import { BaseResponseType, ErrorResponseType } from './types';
+import { TransactionStatusEnum } from '../../enums/transaction-types.enum';
+import { BaseResponseType, ErrorResponseType } from '../../types';
 
 /**
  * @mplus/msuite-lib
@@ -16,21 +16,21 @@ import { BaseResponseType, ErrorResponseType } from './types';
 export {
     MPlusApplicationEnum,
     ApplicationModuleEnum
-} from './enums/applications.enum';
+} from '../../enums/applications.enum';
 
 export {
     TransactionStatusEnum,
     PaymentMethodEnum
-} from './enums/transaction-types.enum';
+} from '../../enums/transaction-types.enum';
 
 export {
     NotificationChannelEnum,
     NotificationActionEnum
-} from './contracts/notification-channels.contract';
+} from '../../contracts/notification-channels.contract';
 
 export {
     WebhookEventEnum
-} from './contracts/webhook-events.contract';
+} from '../../contracts/webhook-events.contract';
 
 // ==================== EXPORT TYPES ====================
 // All interfaces/types have "Type" suffix for clear identification
@@ -116,7 +116,7 @@ export type {
     BooleanStringType,
     HttpMethodType,
     ContentTypeType
-} from './types';
+} from '../../types';
 
 // ==================== EXPORT API CONTRACTS ====================
 export type {
@@ -128,14 +128,14 @@ export type {
     APIClientConfigType,
     APIRequestOptionsType,
     APIResponseWrapperType
-} from './contracts/api-endpoints.contract';
+} from '../../contracts/api-endpoints.contract';
 
 // ==================== EXPORT WEBHOOK CONTRACTS ====================
 export type {
     WebhookPayloadType,
     TransactionPostedPayloadType,
     WebhookSubscriptionType
-} from './contracts/webhook-events.contract';
+} from '../../contracts/webhook-events.contract';
 
 // ==================== EXPORT NOTIFICATION CONTRACTS ====================
 export type {
@@ -156,7 +156,7 @@ export type {
     NotificationStatsType,
     NotificationBatchType,
     NotificationQueueItemType
-} from './contracts/notification-channels.contract';
+} from '../../contracts/notification-channels.contract';
 
 // ==================== EXPORT UTILITIES ====================
 // Re-export common utility types with clear names
@@ -170,7 +170,7 @@ export type {
     RequestTypeGuard,
     ValidatedRequestType,
     BatchRequestResultType
-} from './types';
+} from '../../types';
 
 // ==================== EXPORT CONSTANTS ====================
 // Export common constants

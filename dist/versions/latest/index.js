@@ -5,7 +5,7 @@ exports.BASE_API_PATH = exports.DEFAULT_CURRENCY = exports.API_VERSION = exports
 exports.isSuccessResponse = isSuccessResponse;
 exports.isErrorResponse = isErrorResponse;
 exports.isValidTransactionStatus = isValidTransactionStatus;
-const transaction_types_enum_1 = require("./enums/transaction-types.enum");
+const transaction_types_enum_1 = require("../../enums/transaction-types.enum");
 /**
  * @mplus/msuite-lib
  * Universal MSuite Library - Accounting API Contracts and Interfaces
@@ -15,16 +15,16 @@ const transaction_types_enum_1 = require("./enums/transaction-types.enum");
  */
 // ==================== EXPORT ENUMS ====================
 // All enums have "Enum" suffix for clear identification
-var applications_enum_1 = require("./enums/applications.enum");
+var applications_enum_1 = require("../../enums/applications.enum");
 Object.defineProperty(exports, "MPlusApplicationEnum", { enumerable: true, get: function () { return applications_enum_1.MPlusApplicationEnum; } });
 Object.defineProperty(exports, "ApplicationModuleEnum", { enumerable: true, get: function () { return applications_enum_1.ApplicationModuleEnum; } });
-var transaction_types_enum_2 = require("./enums/transaction-types.enum");
+var transaction_types_enum_2 = require("../../enums/transaction-types.enum");
 Object.defineProperty(exports, "TransactionStatusEnum", { enumerable: true, get: function () { return transaction_types_enum_2.TransactionStatusEnum; } });
 Object.defineProperty(exports, "PaymentMethodEnum", { enumerable: true, get: function () { return transaction_types_enum_2.PaymentMethodEnum; } });
-var notification_channels_contract_1 = require("./contracts/notification-channels.contract");
+var notification_channels_contract_1 = require("../../contracts/notification-channels.contract");
 Object.defineProperty(exports, "NotificationChannelEnum", { enumerable: true, get: function () { return notification_channels_contract_1.NotificationChannelEnum; } });
 Object.defineProperty(exports, "NotificationActionEnum", { enumerable: true, get: function () { return notification_channels_contract_1.NotificationActionEnum; } });
-var webhook_events_contract_1 = require("./contracts/webhook-events.contract");
+var webhook_events_contract_1 = require("../../contracts/webhook-events.contract");
 Object.defineProperty(exports, "WebhookEventEnum", { enumerable: true, get: function () { return webhook_events_contract_1.WebhookEventEnum; } });
 // ==================== EXPORT CONSTANTS ====================
 // Export common constants
