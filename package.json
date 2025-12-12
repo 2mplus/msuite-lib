@@ -40,9 +40,6 @@
     "prettier": "^3.0.0",
     "typescript": "^5.0.0"
   },
-  "dependencies": {
-    "msuite-lib": "^1.0.0"
-  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
