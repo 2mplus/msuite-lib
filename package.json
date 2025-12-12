@@ -1,0 +1,44 @@
+{
+  "name": "@mplus/msuite-lib",
+  "version": "1.0.0",
+  "description": "Universal accounting API contracts and interfaces for applications",
+  "homepage": "https://github.com/2mplus/msuite-lib#readme",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "echo \"No tests specified\" && exit 0",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "accounting",
+    "api",
+    "contracts",
+    "interfaces",
+    "double-entry",
+    "finance",
+    "mstack"
+  ],
+  "author": "mPlus Systems",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2mplus/msuite-lib.git"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.0.0"
+  }
+}
