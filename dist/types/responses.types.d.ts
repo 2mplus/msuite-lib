@@ -1,9 +1,6 @@
-// src/types/responses.types.ts
-
 import { ApplicationModuleEnum, MPlusApplicationEnum } from "../enums/applications.enum";
 import { TransactionStatusEnum } from "../enums/transaction-types.enum";
 import { PartyDetailsType } from "./shared.types";
-
 /**
  * Base API Response Type
  */
@@ -14,7 +11,6 @@ export interface BaseResponseType {
     message?: string;
     version: string;
 }
-
 /**
  * Success Response Type (generic)
  */
@@ -23,7 +19,6 @@ export interface SuccessResponseType<T = any> extends BaseResponseType {
     pagination?: PaginationType;
     metadata?: Record<string, any>;
 }
-
 /**
  * Error Response Type
  */
@@ -41,7 +36,6 @@ export interface ErrorResponseType extends BaseResponseType {
         referenceId?: string;
     };
 }
-
 /**
  * Pagination Metadata Type
  */
@@ -53,7 +47,6 @@ export interface PaginationType {
     hasNext: boolean;
     hasPrevious: boolean;
 }
-
 /**
  * Journal Entry Response Type
  */
@@ -68,7 +61,6 @@ export interface JournalEntryResponseType extends BaseResponseType {
         totalCredit: number;
         currency: string;
         exchangeRate?: number;
-
         ledgerPostings: Array<{
             ledgerCode: string;
             ledgerName: string;
@@ -78,7 +70,6 @@ export interface JournalEntryResponseType extends BaseResponseType {
             runningBalance: number;
             description?: string;
         }>;
-
         references: {
             sourceApp: MPlusApplicationEnum;
             sourceModule: ApplicationModuleEnum;
@@ -86,7 +77,6 @@ export interface JournalEntryResponseType extends BaseResponseType {
             correlationId: string;
             traceId?: string;
         };
-
         status: TransactionStatusEnum;
         statusMessage?: string;
         statusHistory?: Array<{
@@ -95,7 +85,6 @@ export interface JournalEntryResponseType extends BaseResponseType {
             updatedBy: string;
             notes?: string;
         }>;
-
         metadata: {
             processedAt: string;
             processedBy: string;
@@ -103,14 +92,12 @@ export interface JournalEntryResponseType extends BaseResponseType {
             apiVersion: string;
             ipAddress?: string;
         };
-
         links: {
             self: string;
             voucher: string;
             journal: string;
             download?: string;
         };
-
         warnings?: Array<{
             code: string;
             message: string;
@@ -118,7 +105,6 @@ export interface JournalEntryResponseType extends BaseResponseType {
         }>;
     };
 }
-
 /**
  * Voucher Response Type
  */
@@ -130,21 +116,17 @@ export interface VoucherResponseType extends BaseResponseType {
         amount: number;
         referenceNumber: string;
         description?: string;
-
         debitParty?: PartyDetailsType;
         creditParty?: PartyDetailsType;
-
         status: 'CREATED' | 'POSTED' | 'CANCELLED' | 'REVERSED';
         postedDate: string;
         cancelledDate?: string;
-
         metadata: {
             sourceApp: MPlusApplicationEnum;
             sourceReference: string;
             createdBy: string;
             approvedBy?: string;
         };
-
         attachments?: Array<{
             name: string;
             url: string;
@@ -153,7 +135,6 @@ export interface VoucherResponseType extends BaseResponseType {
         }>;
     };
 }
-
 /**
  * Transaction Status Response Type
  */
@@ -166,7 +147,6 @@ export interface TransactionStatusResponseType extends BaseResponseType {
         postedDate?: string;
         cancelledDate?: string;
         reversedDate?: string;
-
         financialSummary?: {
             totalDebit: number;
             totalCredit: number;
@@ -174,7 +154,6 @@ export interface TransactionStatusResponseType extends BaseResponseType {
             currency: string;
             taxAmount?: number;
         };
-
         auditTrail: Array<{
             timestamp: string;
             action: string;
@@ -182,7 +161,6 @@ export interface TransactionStatusResponseType extends BaseResponseType {
             notes?: string;
             ipAddress?: string;
         }>;
-
         references?: {
             sourceApp: MPlusApplicationEnum;
             sourceModule: ApplicationModuleEnum;
@@ -190,7 +168,6 @@ export interface TransactionStatusResponseType extends BaseResponseType {
         };
     };
 }
-
 /**
  * Account Balance Response Type
  */
@@ -199,7 +176,6 @@ export interface AccountBalanceResponseType extends BaseResponseType {
         ledgerCode: string;
         ledgerName: string;
         asOfDate: string;
-
         balances: {
             openingBalance: number;
             closingBalance: number;
@@ -207,7 +183,6 @@ export interface AccountBalanceResponseType extends BaseResponseType {
             totalCredit: number;
             netBalance: number;
         };
-
         periodBalances?: Array<{
             period: string;
             debitTotal: number;
@@ -215,13 +190,11 @@ export interface AccountBalanceResponseType extends BaseResponseType {
             balance: number;
             transactionCount: number;
         }>;
-
         currencyInfo: {
             currency: string;
             exchangeRate?: number;
             baseCurrency?: string;
         };
-
         metadata?: {
             accountType: string;
             normalBalance: 'debit' | 'credit';
@@ -230,7 +203,6 @@ export interface AccountBalanceResponseType extends BaseResponseType {
         };
     };
 }
-
 /**
  * Reconciliation Response Type
  */
@@ -239,7 +211,6 @@ export interface ReconciliationResponseType extends BaseResponseType {
         reconciliationId: string;
         accountCode: string;
         period: string;
-
         summary: {
             openingBalance: number;
             closingBalance: number;
@@ -248,12 +219,10 @@ export interface ReconciliationResponseType extends BaseResponseType {
             difference: number;
             matchingPercentage: number;
         };
-
         status: 'IN_PROGRESS' | 'COMPLETED' | 'DISCREPANCY' | 'CANCELLED';
         reconciledAt?: string;
         reconciledBy?: string;
         completedAt?: string;
-
         discrepancies?: Array<{
             transactionId: string;
             date: string;
@@ -264,7 +233,6 @@ export interface ReconciliationResponseType extends BaseResponseType {
         }>;
     };
 }
-
 /**
  * Health Check Response Type
  */
@@ -275,7 +243,6 @@ export interface HealthCheckResponseType extends BaseResponseType {
         uptime: number;
         version: string;
         timestamp: string;
-
         components: {
             database: {
                 status: string;
@@ -301,7 +268,6 @@ export interface HealthCheckResponseType extends BaseResponseType {
                 usedSpace: number;
             };
         };
-
         metrics: {
             requestCount: number;
             errorRate: number;
@@ -310,7 +276,6 @@ export interface HealthCheckResponseType extends BaseResponseType {
         };
     };
 }
-
 /**
  * Report Response Type (generic)
  */
@@ -321,7 +286,6 @@ export interface ReportResponseType<T = any> extends BaseResponseType {
     format: 'JSON' | 'CSV' | 'PDF' | 'EXCEL';
     downloadUrl?: string;
 }
-
 /**
  * Search Response Type
  */
@@ -334,7 +298,6 @@ export interface SearchResponseType<T = any> extends BaseResponseType {
         direction: 'asc' | 'desc';
     }>;
 }
-
 /**
  * Batch Operation Response Type
  */
@@ -354,7 +317,6 @@ export interface BatchResponseType extends BaseResponseType {
         }>;
     };
 }
-
 /**
  * Validation Response Type
  */
@@ -370,7 +332,6 @@ export interface ValidationResponseType extends BaseResponseType {
         suggestions?: string[];
     };
 }
-
 /**
  * Export Response Type
  */
@@ -384,7 +345,6 @@ export interface ExportResponseType extends BaseResponseType {
         recordCount: number;
     };
 }
-
 /**
  * Webhook Response Type
  */
@@ -400,7 +360,6 @@ export interface WebhookResponseType extends BaseResponseType {
         successRate?: number;
     };
 }
-
 /**
  * System Metrics Response Type
  */
@@ -417,14 +376,14 @@ export interface SystemMetricsResponseType extends BaseResponseType {
         databaseConnections: number;
     };
 }
-
-// Common response utility types
 export type APIResponseType<T = any> = SuccessResponseType<T> | ErrorResponseType;
-
 export type AsyncResponseType<T = any> = Promise<APIResponseType<T>>;
-
 export type ResponseFactoryType<T> = {
     success: (data: T, message?: string) => SuccessResponseType<T>;
     error: (error: Error, code?: string) => ErrorResponseType;
-    validationError: (errors: Array<{ field: string; message: string }>) => ErrorResponseType;
+    validationError: (errors: Array<{
+        field: string;
+        message: string;
+    }>) => ErrorResponseType;
 };
+//# sourceMappingURL=responses.types.d.ts.map

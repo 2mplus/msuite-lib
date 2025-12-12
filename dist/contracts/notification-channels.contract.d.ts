@@ -1,31 +1,27 @@
-// src/contracts/notification-channels.contract.ts
-
 /**
  * PostgreSQL notification channels used by triggers
  */
-export enum NotificationChannelEnum {
-    ACC_ACCOUNT_CHANNEL = 'acc_account_channel',
-    ACC_LEDGER_CHANNEL = 'acc_ledger_channel',
-    ACC_JOURNAL_CHANNEL = 'acc_journal_channel',
-    ACC_VOUCHER_CHANNEL = 'acc_voucher_channel',
-    ACC_TRANSACTION_CHANNEL = 'acc_transaction_channel',
-    SMS_USER_CHANNEL = 'sms_user_channel',
-    SMS_STUDENT_CHANNEL = 'sms_student_channel',
-    SMS_FEE_CHANNEL = 'sms_fee_channel'
+export declare enum NotificationChannelEnum {
+    ACC_ACCOUNT_CHANNEL = "acc_account_channel",
+    ACC_LEDGER_CHANNEL = "acc_ledger_channel",
+    ACC_JOURNAL_CHANNEL = "acc_journal_channel",
+    ACC_VOUCHER_CHANNEL = "acc_voucher_channel",
+    ACC_TRANSACTION_CHANNEL = "acc_transaction_channel",
+    SMS_USER_CHANNEL = "sms_user_channel",
+    SMS_STUDENT_CHANNEL = "sms_student_channel",
+    SMS_FEE_CHANNEL = "sms_fee_channel"
 }
-
 /**
  * Common notification actions
  */
-export enum NotificationActionEnum {
-    INSERT = 'INSERT',
-    UPDATE = 'UPDATE',
-    DELETE = 'DELETE',
-    STATUS_CHANGE = 'STATUS_CHANGE',
-    VERIFIED = 'VERIFIED',
-    CLASS_CHANGE = 'CLASS_CHANGE'
+export declare enum NotificationActionEnum {
+    INSERT = "INSERT",
+    UPDATE = "UPDATE",
+    DELETE = "DELETE",
+    STATUS_CHANGE = "STATUS_CHANGE",
+    VERIFIED = "VERIFIED",
+    CLASS_CHANGE = "CLASS_CHANGE"
 }
-
 /**
  * Base notification payload structure
  */
@@ -38,7 +34,6 @@ export interface NotificationPayloadType {
     userId?: string;
     correlationId?: string;
 }
-
 /**
  * Account change notification
  */
@@ -57,7 +52,6 @@ export interface AccountNotificationType extends NotificationPayloadType {
         normalBalance: 'debit' | 'credit';
     };
 }
-
 /**
  * Ledger entry notification
  */
@@ -75,7 +69,6 @@ export interface LedgerNotificationType extends NotificationPayloadType {
         currency: string;
     };
 }
-
 /**
  * Journal entry notification
  */
@@ -94,7 +87,6 @@ export interface JournalNotificationType extends NotificationPayloadType {
         postedBy: string;
     };
 }
-
 /**
  * User change notification
  */
@@ -112,7 +104,6 @@ export interface UserNotificationType extends NotificationPayloadType {
         lastLogin?: string;
     };
 }
-
 /**
  * Student change notification
  */
@@ -130,7 +121,6 @@ export interface StudentNotificationType extends NotificationPayloadType {
         nationality: string;
     };
 }
-
 /**
  * Fee transaction notification
  */
@@ -148,18 +138,10 @@ export interface FeeNotificationType extends NotificationPayloadType {
         paidDate?: string;
     };
 }
-
 /**
  * Unified notification type
  */
-export type UnifiedNotificationType =
-    | AccountNotificationType
-    | LedgerNotificationType
-    | JournalNotificationType
-    | UserNotificationType
-    | StudentNotificationType
-    | FeeNotificationType;
-
+export type UnifiedNotificationType = AccountNotificationType | LedgerNotificationType | JournalNotificationType | UserNotificationType | StudentNotificationType | FeeNotificationType;
 /**
  * Notification channel configuration
  */
@@ -170,7 +152,6 @@ export interface NotificationChannelConfigType {
     retryCount: number;
     retryDelay: number;
 }
-
 /**
  * Webhook notification type
  */
@@ -184,7 +165,6 @@ export interface WebhookNotificationType {
     lastAttempt?: string;
     nextAttempt?: string;
 }
-
 /**
  * Notification subscription type
  */
@@ -199,23 +179,16 @@ export interface NotificationSubscriptionType {
     createdAt: string;
     updatedAt: string;
 }
-
-// Helper type for notification parsing
 export type ParseNotificationResultType<T extends UnifiedNotificationType> = {
     isValid: boolean;
     notification?: T;
     error?: string;
 };
-
-// Type for notification handlers
-export type NotificationHandlerType<T extends UnifiedNotificationType> = (
-    notification: T
-) => Promise<{
+export type NotificationHandlerType<T extends UnifiedNotificationType> = (notification: T) => Promise<{
     success: boolean;
     message?: string;
     error?: string;
 }>;
-
 /**
  * Notification system configuration
  */
@@ -229,7 +202,6 @@ export interface NotificationSystemConfigType {
     batchSize: number;
     cleanupIntervalHours: number;
 }
-
 /**
  * Notification statistics type
  */
@@ -242,8 +214,6 @@ export interface NotificationStatsType {
     byEvent: Record<NotificationActionEnum, number>;
     lastUpdated: string;
 }
-
-// Utility types for notification processing
 export interface NotificationBatchType {
     notifications: UnifiedNotificationType[];
     processed: number;
@@ -251,7 +221,6 @@ export interface NotificationBatchType {
     startTime: string;
     endTime?: string;
 }
-
 export interface NotificationQueueItemType {
     id: string;
     notification: UnifiedNotificationType;
@@ -260,3 +229,4 @@ export interface NotificationQueueItemType {
     createdAt: string;
     processedAt?: string;
 }
+//# sourceMappingURL=notification-channels.contract.d.ts.map

@@ -4,7 +4,7 @@
  * All transaction types supported by the accounting system
  * Matches the trigger functions and database schema
  */
-export enum TransactionType {
+export enum TransactionEnum {
     // ========== STUDENT FEES (MSchool) ==========
     STUDENT_FEE_PAYMENT = 'STUDENT_FEE_PAYMENT',
     STUDENT_FEE_ADVANCE = 'STUDENT_FEE_ADVANCE',
@@ -104,7 +104,7 @@ export enum TransactionType {
 /**
  * Transaction status
  */
-export enum TransactionStatus {
+export enum TransactionStatusEnum {
     DRAFT = 'DRAFT',
     PENDING = 'PENDING',
     POSTED = 'POSTED',
@@ -116,7 +116,7 @@ export enum TransactionStatus {
 /**
  * Payment methods
  */
-export enum PaymentMethod {
+export enum PaymentMethodEnum {
     CASH = 'CASH',
     CHEQUE = 'CHEQUE',
     ONLINE_TRANSFER = 'ONLINE_TRANSFER',

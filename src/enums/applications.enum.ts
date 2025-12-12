@@ -3,7 +3,7 @@
 /**
  * All MStack applications that can interface with mAccounts
  */
-export enum MPlusApplication {
+export enum MPlusApplicationEnum {
     // School Management System
     MSCHOOL = 'mschool',
 
@@ -37,7 +37,7 @@ export enum MPlusApplication {
 /**
  * Application modules within each system
  */
-export enum ApplicationModule {
+export enum ApplicationModuleEnum {
     // MSchool modules
     STUDENT_FEES = 'student_fees',
     TRANSPORT_FEES = 'transport_fees',

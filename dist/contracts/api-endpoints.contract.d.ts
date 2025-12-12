@@ -1,27 +1,8 @@
-// src/contracts/api-endpoints.contract.ts
-
-import {
-    JournalEntryRequestType,
-    JournalEntryResponseType,
-    BatchJournalEntryRequestType,
-    VoucherRequestType,
-    VoucherResponseType,
-    ReconciliationRequestType,
-    ReconciliationResponseType,
-    TaxFilingRequestType,
-    StatusUpdateRequestType,
-    TransactionStatusResponseType,
-    AccountBalanceResponseType,
-    HealthCheckResponseType,
-    ErrorResponseType,
-    BaseResponseType
-} from '../types';
-
+import { JournalEntryRequestType, JournalEntryResponseType, BatchJournalEntryRequestType, VoucherRequestType, VoucherResponseType, ReconciliationRequestType, ReconciliationResponseType, TaxFilingRequestType, StatusUpdateRequestType, TransactionStatusResponseType, AccountBalanceResponseType, HealthCheckResponseType, ErrorResponseType, BaseResponseType } from '../types';
 /**
  * Complete API endpoints specification for mAccounts
  */
 export interface AccountingAPIType {
-    // ========== JOURNAL ENTRIES ==========
     createJournalEntry: {
         path: '/api/v1/transactions/journal';
         method: 'POST';
@@ -30,26 +11,26 @@ export interface AccountingAPIType {
         description: 'Create a new journal entry (double-entry transaction)';
         authentication: 'API Key + Signature';
     };
-
     getJournalEntry: {
         path: '/api/v1/transactions/journal/{journalNumber}';
         method: 'GET';
-        request: { journalNumber: string };
+        request: {
+            journalNumber: string;
+        };
         response: JournalEntryResponseType | ErrorResponseType;
         description: 'Retrieve a specific journal entry by journal number';
         authentication: 'API Key';
     };
-
     createBatchJournalEntries: {
         path: '/api/v1/transactions/journal/batch';
         method: 'POST';
         request: BatchJournalEntryRequestType;
-        response: { data: JournalEntryResponseType[] } | ErrorResponseType;
+        response: {
+            data: JournalEntryResponseType[];
+        } | ErrorResponseType;
         description: 'Create multiple journal entries in a single request';
         authentication: 'API Key + Signature';
     };
-
-    // ========== VOUCHERS ==========
     createVoucher: {
         path: '/api/v1/vouchers';
         method: 'POST';
@@ -58,26 +39,26 @@ export interface AccountingAPIType {
         description: 'Create a payment/receipt/contra/journal voucher';
         authentication: 'API Key + Signature';
     };
-
     getVoucher: {
         path: '/api/v1/vouchers/{voucherNumber}';
         method: 'GET';
-        request: { voucherNumber: string };
+        request: {
+            voucherNumber: string;
+        };
         response: VoucherResponseType | ErrorResponseType;
         description: 'Retrieve a specific voucher by voucher number';
         authentication: 'API Key';
     };
-
-    // ========== TRANSACTION STATUS ==========
     getTransactionStatus: {
         path: '/api/v1/transactions/{transactionId}/status';
         method: 'GET';
-        request: { transactionId: string };
+        request: {
+            transactionId: string;
+        };
         response: TransactionStatusResponseType | ErrorResponseType;
         description: 'Check the status of a transaction';
         authentication: 'API Key';
     };
-
     updateTransactionStatus: {
         path: '/api/v1/transactions/{transactionId}/status';
         method: 'PUT';
@@ -86,27 +67,31 @@ export interface AccountingAPIType {
         description: 'Update transaction status (cancel, reverse, etc.)';
         authentication: 'API Key + Signature';
     };
-
-    // ========== LEDGER & ACCOUNTS ==========
     getAccountBalance: {
         path: '/api/v1/accounts/{code}/balance';
         method: 'GET';
-        request: { code: string; asOfDate?: string };
+        request: {
+            code: string;
+            asOfDate?: string;
+        };
         response: AccountBalanceResponseType | ErrorResponseType;
         description: 'Get current balance for a ledger account';
         authentication: 'API Key';
     };
-
     getAccountStatement: {
         path: '/api/v1/accounts/{code}/statement';
         method: 'GET';
-        request: { code: string; fromDate: string; toDate: string };
-        response: { data: any[] } | ErrorResponseType;
+        request: {
+            code: string;
+            fromDate: string;
+            toDate: string;
+        };
+        response: {
+            data: any[];
+        } | ErrorResponseType;
         description: 'Get detailed statement for a ledger account';
         authentication: 'API Key';
     };
-
-    // ========== RECONCILIATION ==========
     createReconciliation: {
         path: '/api/v1/reconciliation';
         method: 'POST';
@@ -115,8 +100,6 @@ export interface AccountingAPIType {
         description: 'Submit bank/cash reconciliation';
         authentication: 'API Key + Signature';
     };
-
-    // ========== TAX FILING ==========
     submitTaxFiling: {
         path: '/api/v1/tax/filing';
         method: 'POST';
@@ -125,36 +108,43 @@ export interface AccountingAPIType {
         description: 'Submit tax filing information';
         authentication: 'API Key + Signature';
     };
-
-    // ========== REPORTS ==========
     getTrialBalance: {
         path: '/api/v1/reports/trial-balance';
         method: 'GET';
-        request: { asOfDate: string };
-        response: { data: any } | ErrorResponseType;
+        request: {
+            asOfDate: string;
+        };
+        response: {
+            data: any;
+        } | ErrorResponseType;
         description: 'Get trial balance report';
         authentication: 'API Key';
     };
-
     getProfitLoss: {
         path: '/api/v1/reports/profit-loss';
         method: 'GET';
-        request: { fromDate: string; toDate: string };
-        response: { data: any } | ErrorResponseType;
+        request: {
+            fromDate: string;
+            toDate: string;
+        };
+        response: {
+            data: any;
+        } | ErrorResponseType;
         description: 'Get profit & loss statement';
         authentication: 'API Key';
     };
-
     getBalanceSheet: {
         path: '/api/v1/reports/balance-sheet';
         method: 'GET';
-        request: { asOfDate: string };
-        response: { data: any } | ErrorResponseType;
+        request: {
+            asOfDate: string;
+        };
+        response: {
+            data: any;
+        } | ErrorResponseType;
         description: 'Get balance sheet';
         authentication: 'API Key';
     };
-
-    // ========== HEALTH & METRICS ==========
     healthCheck: {
         path: '/api/v1/health';
         method: 'GET';
@@ -163,17 +153,16 @@ export interface AccountingAPIType {
         description: 'Check API health status';
         authentication: 'None';
     };
-
     getSystemMetrics: {
         path: '/api/v1/metrics';
         method: 'GET';
         request: {};
-        response: { data: any } | ErrorResponseType;
+        response: {
+            data: any;
+        } | ErrorResponseType;
         description: 'Get system performance metrics';
         authentication: 'API Key';
     };
-
-    // ========== WEBHOOK MANAGEMENT ==========
     registerWebhook: {
         path: '/api/v1/webhooks';
         method: 'POST';
@@ -186,31 +175,26 @@ export interface AccountingAPIType {
         description: 'Register a webhook endpoint';
         authentication: 'API Key + Signature';
     };
-
     listWebhooks: {
         path: '/api/v1/webhooks';
         method: 'GET';
         request: {};
-        response: { data: any[] } | ErrorResponseType;
+        response: {
+            data: any[];
+        } | ErrorResponseType;
         description: 'List registered webhooks';
         authentication: 'API Key';
     };
 }
-
-// Helper types for API usage
 export type APIEndpointType = keyof AccountingAPIType;
 export type APIRequestType<T extends APIEndpointType> = AccountingAPIType[T]['request'];
 export type APIResponseType<T extends APIEndpointType> = AccountingAPIType[T]['response'];
-
-// Type for individual endpoint configuration
 export interface EndpointConfigType {
     path: string;
     method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
     description: string;
     authentication: 'None' | 'API Key' | 'API Key + Signature' | 'Bearer Token';
 }
-
-// Type for API client configuration
 export interface APIClientConfigType {
     baseURL: string;
     apiKey: string;
@@ -218,16 +202,12 @@ export interface APIClientConfigType {
     timeout?: number;
     maxRetries?: number;
 }
-
-// Type for API request options
 export interface APIRequestOptionsType {
     headers?: Record<string, string>;
     params?: Record<string, any>;
     timeout?: number;
     retryCount?: number;
 }
-
-// Type for API response wrapper
 export interface APIResponseWrapperType<T = any> {
     success: boolean;
     data?: T;
@@ -236,3 +216,4 @@ export interface APIResponseWrapperType<T = any> {
     timestamp: string;
     requestId?: string;
 }
+//# sourceMappingURL=api-endpoints.contract.d.ts.map

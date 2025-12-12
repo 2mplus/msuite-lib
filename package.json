@@ -1,6 +1,6 @@
 {
-  "name": "@mplus/msuite-lib",
-  "version": "1.0.0",
+  "name": "msuite-lib",
+  "version": "1.00.1",
   "description": "Universal accounting API contracts and interfaces for applications",
   "homepage": "https://github.com/2mplus/msuite-lib#readme",
   "main": "dist/index.js",
@@ -12,11 +12,10 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch",
-    "test": "echo \"No tests specified\" && exit 0",
-    "lint": "eslint src --ext .ts",
-    "format": "prettier --write \"src/**/*.ts\"",
     "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "accounting",
@@ -34,11 +33,32 @@
     "url": "git+https://github.com/2mplus/msuite-lib.git"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
     "@types/node": "^20.0.0",
-    "eslint": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "prettier": "^3.0.0"
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "msuite-lib": "^1.0.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./v1": {
+      "import": "./dist/versions/v1/index.js",
+      "require": "./dist/versions/v1/index.js",
+      "types": "./dist/versions/v1/index.d.ts"
+    },
+    "./latest": {
+      "import": "./dist/versions/latest/index.js",
+      "require": "./dist/versions/latest/index.js",
+      "types": "./dist/versions/latest/index.d.ts"
+    },
+    "./package.json": "./package.json"
   }
 }

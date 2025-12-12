@@ -1,69 +1,34 @@
-// src/types/requests.types.ts
-
 import { ApplicationModuleEnum, MPlusApplicationEnum } from '../enums/applications.enum';
 import { TransactionStatusEnum, TransactionEnum } from '../enums/transaction-types.enum';
-import {
-    AccountPostingType,
-    MonetaryAmountType,
-    TaxDetailsType,
-    PartyDetailsType,
-    PaymentDetailsType,
-    UserContextType,
-    RequestMetadataType
-} from './shared.types';
-
+import { AccountPostingType, MonetaryAmountType, TaxDetailsType, PartyDetailsType, PaymentDetailsType, UserContextType, RequestMetadataType } from './shared.types';
 /**
  * Journal Entry Request - Main transaction interface
  */
 export interface JournalEntryRequestType {
-    // Core transaction info
     transactionId: string;
     transactionType: TransactionEnum;
-    transactionDate: string; // ISO 8601 format
+    transactionDate: string;
     description: string;
     status?: TransactionStatusEnum;
-
-    // Application context
     sourceApp: MPlusApplicationEnum;
     sourceModule: ApplicationModuleEnum;
-    sourceReference: string; // Reference ID in source app
-
-    // Financial details
+    sourceReference: string;
     amount: MonetaryAmountType;
-
-    // Double-entry ledger postings
     ledgerEntries: AccountPostingType[];
-
-    // Tax details
     taxDetails?: TaxDetailsType;
-
-    // Additional charges
     discountAmount?: number;
     roundOffAmount?: number;
     shippingCost?: number;
     otherCharges?: Record<string, number>;
-
-    // Party information
     party?: PartyDetailsType;
-
-    // Payment information
     payment?: PaymentDetailsType;
-
-    // Attachments and metadata
-    attachments?: string[]; // URLs to supporting documents
+    attachments?: string[];
     metadata?: Record<string, any>;
-
-    // Security context
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
-
-    // Webhook callback URL (optional)
     callbackUrl?: string;
-
-    // Validation signature
-    signature?: string; // HMAC signature for verification
+    signature?: string;
 }
-
 /**
  * Batch Journal Entry Request
  */
@@ -74,7 +39,6 @@ export interface BatchJournalEntryRequestType {
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Voucher Creation Request
  */
@@ -84,26 +48,18 @@ export interface VoucherRequestType {
     referenceNumber: string;
     description: string;
     amount: number;
-
-    // Debit/Credit parties
     debitParty?: PartyDetailsType;
     creditParty?: PartyDetailsType;
-
-    // Ledger postings
     debitLedgerCode: string;
     creditLedgerCode: string;
-
     payment?: PaymentDetailsType;
     taxDetails?: TaxDetailsType;
-
     sourceApp: MPlusApplicationEnum;
     sourceModule: ApplicationModuleEnum;
     sourceReference: string;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Reconciliation Request
  */
@@ -114,7 +70,6 @@ export interface ReconciliationRequestType {
     endDate: string;
     openingBalance: number;
     closingBalance: number;
-
     transactions: Array<{
         transactionId: string;
         date: string;
@@ -125,44 +80,34 @@ export interface ReconciliationRequestType {
         reconciled: boolean;
         remarks?: string;
     }>;
-
     sourceApp: MPlusApplicationEnum;
     sourceModule: ApplicationModuleEnum;
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Tax Filing Request
  */
 export interface TaxFilingRequestType {
     filingId: string;
-    taxPeriod: string; // e.g., "2024-04" for April 2024
+    taxPeriod: string;
     taxType: 'GST' | 'TDS' | 'INCOME_TAX';
-
-    // Tax details
     taxableAmount: number;
     taxAmount: number;
     interestAmount?: number;
     penaltyAmount?: number;
     totalPayable: number;
-
-    // Filing details
-    returnType: string; // e.g., "GSTR-3B"
+    returnType: string;
     dueDate: string;
     filingDate: string;
-
-    // Payment details
     paymentReference?: string;
     paymentDate?: string;
     challanNumber?: string;
-
     sourceApp: MPlusApplicationEnum;
     sourceModule: ApplicationModuleEnum;
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Status Update Request
  */
@@ -172,11 +117,9 @@ export interface StatusUpdateRequestType {
     reason?: string;
     notes?: string;
     effectiveDate?: string;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Account Balance Request
  */
@@ -184,11 +127,9 @@ export interface AccountBalanceRequestType {
     accountCode: string;
     asOfDate?: string;
     includeChildAccounts?: boolean;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Account Statement Request
  */
@@ -199,11 +140,9 @@ export interface AccountStatementRequestType {
     page?: number;
     limit?: number;
     includeTransactions?: boolean;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Trial Balance Request
  */
@@ -211,11 +150,9 @@ export interface TrialBalanceRequestType {
     asOfDate: string;
     includeClosedAccounts?: boolean;
     groupByCategory?: boolean;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Profit & Loss Request
  */
@@ -224,22 +161,18 @@ export interface ProfitLossRequestType {
     toDate: string;
     includeDetails?: boolean;
     compareWithPrevious?: boolean;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Balance Sheet Request
  */
 export interface BalanceSheetRequestType {
     asOfDate: string;
     includeDetails?: boolean;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Webhook Registration Request
  */
@@ -249,22 +182,18 @@ export interface WebhookRegistrationRequestType {
     secret: string;
     description?: string;
     enabled?: boolean;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Health Check Request
  */
 export interface HealthCheckRequestType {
     component?: 'database' | 'cache' | 'queue' | 'all';
     detailed?: boolean;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Transaction Search Request
  */
@@ -278,11 +207,9 @@ export interface TransactionSearchRequestType {
     sourceApp?: MPlusApplicationEnum;
     page?: number;
     limit?: number;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Export Request
  */
@@ -290,11 +217,9 @@ export interface ExportRequestType {
     reportType: 'TRANSACTIONS' | 'LEDGER' | 'TRIAL_BALANCE' | 'PROFIT_LOSS' | 'BALANCE_SHEET';
     format: 'PDF' | 'EXCEL' | 'CSV' | 'JSON';
     filters: Record<string, any>;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Validate Request Type
  */
@@ -303,11 +228,9 @@ export interface ValidateRequestType {
     validateRules?: boolean;
     validateTaxes?: boolean;
     validateAccounting?: boolean;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
 /**
  * Reverse Request Type
  */
@@ -315,23 +238,16 @@ export interface ReverseRequestType {
     originalTransactionId: string;
     reason: string;
     reversalDate?: string;
-
     userContext: UserContextType;
     requestMetadata: RequestMetadataType;
 }
-
-// Type guard for request validation
 export type RequestTypeGuard<T> = (request: any) => request is T;
-
-// Generic request type with validation
 export interface ValidatedRequestType<T> {
     request: T;
     isValid: boolean;
     errors?: string[];
     warnings?: string[];
 }
-
-// Batch request result type
 export interface BatchRequestResultType<T> {
     batchId: string;
     total: number;
@@ -344,3 +260,4 @@ export interface BatchRequestResultType<T> {
         error?: string;
     }>;
 }
+//# sourceMappingURL=requests.types.d.ts.map

@@ -1,8 +1,5 @@
-// src/types/shared.types.ts
-
 import { MPlusApplicationEnum } from "../enums/applications.enum";
 import { PaymentMethodEnum } from "../enums/transaction-types.enum";
-
 /**
  * Authentication and security headers for all API requests
  */
@@ -18,7 +15,6 @@ export interface ApiAuthHeadersType {
     'X-Branch-ID'?: string;
     'X-Device-ID'?: string;
 }
-
 /**
  * Base request metadata
  */
@@ -36,7 +32,6 @@ export interface RequestMetadataType {
     sourceApplication: MPlusApplicationEnum;
     additionalMetadata?: Record<string, any>;
 }
-
 /**
  * User context for audit trail
  */
@@ -60,13 +55,12 @@ export interface UserContextType {
         country?: string;
     };
 }
-
 /**
  * Monetary amounts with currency
  */
 export interface MonetaryAmountType {
     amount: number;
-    currency: string; // ISO 4217 code (INR, USD, EUR, etc.)
+    currency: string;
     exchangeRate?: number;
     baseCurrency?: string;
     convertedAmount?: number;
@@ -74,7 +68,6 @@ export interface MonetaryAmountType {
     roundingAmount?: number;
     displayAmount?: string;
 }
-
 /**
  * Tax details structure
  */
@@ -103,7 +96,6 @@ export interface TaxDetailsType {
         compensationCess?: number;
     };
 }
-
 /**
  * Party information (customer/supplier/student/patient)
  */
@@ -143,7 +135,6 @@ export interface PartyDetailsType {
         ifscCode: string;
     };
 }
-
 /**
  * Payment information
  */
@@ -167,7 +158,6 @@ export interface PaymentDetailsType {
         uploadedAt: string;
     };
 }
-
 /**
  * Account posting for double-entry accounting
  */
@@ -188,7 +178,6 @@ export interface AccountPostingType {
     isReversal?: boolean;
     reversalOf?: string;
 }
-
 /**
  * Address information type
  */
@@ -201,7 +190,6 @@ export interface AddressType {
     landmark?: string;
     addressType?: 'HOME' | 'OFFICE' | 'BILLING' | 'SHIPPING';
 }
-
 /**
  * Contact information type
  */
@@ -213,7 +201,6 @@ export interface ContactType {
     fax?: string;
     website?: string;
 }
-
 /**
  * Bank account information type
  */
@@ -228,7 +215,6 @@ export interface BankAccountType {
     isPrimary: boolean;
     verified: boolean;
 }
-
 /**
  * Attachment/file information type
  */
@@ -242,7 +228,6 @@ export interface AttachmentType {
     uploadedBy: string;
     description?: string;
 }
-
 /**
  * Audit trail entry type
  */
@@ -259,7 +244,6 @@ export interface AuditTrailEntryType {
     userAgent?: string;
     remarks?: string;
 }
-
 /**
  * Configuration/settings type
  */
@@ -273,7 +257,6 @@ export interface ConfigurationType {
     validationRules?: string;
     defaultValue?: any;
 }
-
 /**
  * Notification/message type
  */
@@ -291,12 +274,11 @@ export interface NotificationType {
     sentAt?: string;
     readAt?: string;
 }
-
 /**
  * Currency information type
  */
 export interface CurrencyType {
-    code: string; // ISO 4217
+    code: string;
     name: string;
     symbol: string;
     decimalPlaces: number;
@@ -304,7 +286,6 @@ export interface CurrencyType {
     isBaseCurrency: boolean;
     isActive: boolean;
 }
-
 /**
  * Date range type
  */
@@ -313,7 +294,6 @@ export interface DateRangeType {
     endDate: string;
     label?: string;
 }
-
 /**
  * Filter criteria type
  */
@@ -323,7 +303,6 @@ export interface FilterCriteriaType {
     value: any;
     value2?: any;
 }
-
 /**
  * Sorting criteria type
  */
@@ -331,7 +310,6 @@ export interface SortingCriteriaType {
     field: string;
     direction: 'ASC' | 'DESC';
 }
-
 /**
  * Pagination parameters type
  */
@@ -340,7 +318,6 @@ export interface PaginationParamsType {
     limit: number;
     offset?: number;
 }
-
 /**
  * Search parameters type
  */
@@ -350,7 +327,6 @@ export interface SearchParamsType {
     sort?: SortingCriteriaType[];
     pagination?: PaginationParamsType;
 }
-
 /**
  * Validation error type
  */
@@ -361,7 +337,6 @@ export interface ValidationErrorType {
     severity?: 'ERROR' | 'WARNING';
     suggestedValue?: any;
 }
-
 /**
  * API rate limiting information
  */
@@ -371,7 +346,6 @@ export interface RateLimitInfoType {
     resetAt: string;
     window: string;
 }
-
 /**
  * System health check type
  */
@@ -382,26 +356,25 @@ export interface HealthCheckType {
     lastChecked: string;
     details?: Record<string, any>;
 }
-
-// Utility types
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
-export type Required<T, K extends keyof T> = T & { [P in K]-?: T[P] };
-export type Nullable<T> = { [P in keyof T]: T[P] | null };
-export type Readonly<T> = { readonly [P in keyof T]: T[P] };
-
-// Common union types
+export type Required<T, K extends keyof T> = T & {
+    [P in K]-?: T[P];
+};
+export type Nullable<T> = {
+    [P in keyof T]: T[P] | null;
+};
+export type Readonly<T> = {
+    readonly [P in keyof T]: T[P];
+};
 export type IDType = string | number;
 export type StatusType = 'ACTIVE' | 'INACTIVE' | 'PENDING' | 'DELETED' | 'SUSPENDED';
 export type YesNoType = 'YES' | 'NO';
 export type GenderType = 'MALE' | 'FEMALE' | 'OTHER' | 'PREFER_NOT_TO_SAY';
-
-// Common enum-like types
 export type DayOfWeekType = 'MONDAY' | 'TUESDAY' | 'WEDNESDAY' | 'THURSDAY' | 'FRIDAY' | 'SATURDAY' | 'SUNDAY';
 export type MonthType = 'JANUARY' | 'FEBRUARY' | 'MARCH' | 'APRIL' | 'MAY' | 'JUNE' | 'JULY' | 'AUGUST' | 'SEPTEMBER' | 'OCTOBER' | 'NOVEMBER' | 'DECEMBER';
 export type QuarterType = 'Q1' | 'Q2' | 'Q3' | 'Q4';
-export type FinancialYearType = string; // Format: "2024-2025"
-
-// Common constant-like types
+export type FinancialYearType = string;
 export type BooleanStringType = 'true' | 'false';
 export type HttpMethodType = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS';
 export type ContentTypeType = 'application/json' | 'application/xml' | 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain';
+//# sourceMappingURL=shared.types.d.ts.map
