@@ -28,7 +28,7 @@ var webhook_events_contract_1 = require("../../contracts/webhook-events.contract
 Object.defineProperty(exports, "WebhookEventEnum", { enumerable: true, get: function () { return webhook_events_contract_1.WebhookEventEnum; } });
 // ==================== EXPORT CONSTANTS ====================
 // Export common constants
-exports.LIBRARY_VERSION = '1.00.1';
+exports.LIBRARY_VERSION = '1.00.2';
 exports.API_VERSION = 'v1';
 exports.DEFAULT_CURRENCY = 'INR';
 exports.BASE_API_PATH = '/api/v1';

@@ -16,7 +16,7 @@ export type { AccountingAPIType, APIEndpointType, APIRequestType, APIResponseTyp
 export type { WebhookPayloadType, TransactionPostedPayloadType, WebhookSubscriptionType } from '../../contracts/webhook-events.contract';
 export type { NotificationPayloadType, AccountNotificationType, LedgerNotificationType, JournalNotificationType, UserNotificationType, StudentNotificationType, FeeNotificationType, UnifiedNotificationType, NotificationChannelConfigType, WebhookNotificationType, NotificationSubscriptionType, ParseNotificationResultType, NotificationHandlerType, NotificationSystemConfigType, NotificationStatsType, NotificationBatchType, NotificationQueueItemType } from '../../contracts/notification-channels.contract';
 export type { APIResponseType as GenericAPIResponse, AsyncResponseType, ResponseFactoryType, RequestTypeGuard, ValidatedRequestType, BatchRequestResultType } from '../../types';
-export declare const LIBRARY_VERSION = "1.00.1";
+export declare const LIBRARY_VERSION = "1.00.2";
 export declare const API_VERSION = "v1";
 export declare const DEFAULT_CURRENCY = "INR";
 export declare const BASE_API_PATH = "/api/v1";
